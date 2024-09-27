@@ -5,6 +5,8 @@
 
   outputs = { self, nixpkgs }:
     let
+      homepage = "https://github.com/soyart/yn";
+
       lastModifiedDate = self.lastModifiedDate or self.lastModified or "19700101";
       version = builtins.substring 0 8 lastModifiedDate;
 
@@ -20,6 +22,7 @@
     in
     {
       packages = forAllSystems ({ pkgs }: {
+        # The C program
         default = pkgs.stdenv.mkDerivation {
           inherit version;
 
@@ -34,6 +37,27 @@
             mkdir -p $out/bin;
             cp a.out $out/bin/yn;
           '';
+
+          meta = {
+            inherit homepage;
+            description = "Simple yes/no TTY prompt";
+          };
+        };
+
+        # The Go program
+        yn-go = pkgs.buildGoModule {
+          inherit version;
+
+          pname = "yn";
+          src = ./.;
+
+          meta = {
+            inherit homepage;
+            description = "Simple yes/no TTY prompt, in Go";
+          };
+
+          # No Go dependencies, if there is, run `go mod vendor`
+          vendorHash = null;
         };
       });
 

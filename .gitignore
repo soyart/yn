@@ -1,5 +1,6 @@
 # Nix build result
 result
 
+yn
 main
 a.out
