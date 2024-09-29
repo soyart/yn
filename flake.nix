@@ -76,12 +76,16 @@
 
       devShells.default = pkgs.mkShell {
         packages = with pkgs; [
+          clang
+
           go
           gopls
           gotools
           go-tools
 
-          clang
+          cargo
+          rustfmt
+          rust-analyzer
         ];
       };
     };
