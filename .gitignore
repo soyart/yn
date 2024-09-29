@@ -1,8 +1,21 @@
-# Nix build result
+# Nix Flake build result
 /result
+
+# C built binary
+a.out
 
 # Built go binary
 /yn
 
-main
-a.out
+# Rust builds
+/target
+
+# Some built binary
+/main
+
+
+# Added by cargo
+#
+# already existing elements were commented out
+
+#/target
