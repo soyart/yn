@@ -17,11 +17,11 @@ int main(int argc, char **argv) {
 
     char c = get_first();
 
-    if (c == 'Y' || c == 'y') {
-        return 0;
+    if (c != 'Y' && c != 'y') {
+        return 1;
     }
 
-    return 1;
+    return 0;
 }
 
 char get_first() {
