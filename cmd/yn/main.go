@@ -3,6 +3,7 @@ package main
 import (
 	"bufio"
 	"os"
+	"strings"
 	"syscall"
 )
 
@@ -20,7 +21,9 @@ func main() {
 		syscall.Exit(1)
 	}
 
-	text := stdin.Bytes()
+	text := stdin.Text()
+	text = strings.TrimSpace(text)
+
 	if len(text) == 0 {
 		syscall.Exit(1)
 	}

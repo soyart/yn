@@ -25,17 +25,18 @@ int main(int argc, char **argv) {
 }
 
 char get_first() {
-    char c = getchar();
-    if (c == '\n') {
-        return 0;
-    }
-
-    char ch = 0;
-    while ((ch = getchar()) && ch != EOF) {
-        if (ch == '\n') {
-            return c;
+    int c = 0;
+    while ((c = getchar()) && c != EOF) {
+        if (c == '\n') {
+            break;
         }
+
+        if (c == ' ' || c == '\t') {
+            continue;
+        }
+
+        return c;
     }
 
-    return 0;
+    return c;
 }
