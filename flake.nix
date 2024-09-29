@@ -20,6 +20,7 @@
         pkgs = import nixpkgs { inherit system; };
       });
     in
+
     {
       packages = forAllSystems ({ pkgs }: {
         # The C program
@@ -59,16 +60,38 @@
           # No Go dependencies, if there is, run `go mod vendor`
           vendorHash = null;
         };
+
+        yn-rs = pkgs.rustPlatform.buildRustPackage {
+          inherit version;
+
+          pname = "yn";
+          src = pkgs.lib.cleanSource ./.;
+          cargoLock.lockFile = ./Cargo.lock;
+
+          meta = {
+            inherit homepage;
+            description = "Simple yes/no TTY prompt, in Go";
+          };
+        };
       });
 
       devShells.default = pkgs.mkShell {
         packages = with pkgs; [
+          file
+
+          nixd
+          nixpkgs-fmt
+
+          clang
+
           go
           gopls
           gotools
           go-tools
 
-          clang
+          cargo
+          rustfmt
+          rust-analyzer
         ];
       };
     };
