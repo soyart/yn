@@ -1,6 +1,8 @@
 # Nix build result
-result
+/result
 
-yn
+# Built go binary
+/yn
+
 main
 a.out
