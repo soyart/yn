@@ -20,6 +20,7 @@
         pkgs = import nixpkgs { inherit system; };
       });
     in
+
     {
       packages = forAllSystems ({ pkgs }: {
         # The C program
@@ -76,6 +77,11 @@
 
       devShells.default = pkgs.mkShell {
         packages = with pkgs; [
+          file
+
+          nixd
+          nixpkgs-fmt
+
           clang
 
           go
